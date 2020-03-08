@@ -14,16 +14,8 @@
 
 package com.github.sakserv.minicluster.impl;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClients;
-import static org.junit.Assert.assertEquals;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-
+import com.github.sakserv.minicluster.config.ConfigVars;
+import com.github.sakserv.propertyparser.PropertyParser;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -35,8 +27,13 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.sakserv.minicluster.config.ConfigVars;
-import com.github.sakserv.propertyparser.PropertyParser;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+import static org.junit.Assert.assertEquals;
 
 public class HdfsLocalClusterIntegrationTest {
 
@@ -53,7 +50,7 @@ public class HdfsLocalClusterIntegrationTest {
             LOG.error("Unable to load property file: {}", propertyParser.getProperty(ConfigVars.DEFAULT_PROPS_FILE));
         }
     }
-    
+
     private static HdfsLocalCluster dfsCluster;
 
     @BeforeClass
@@ -74,7 +71,7 @@ public class HdfsLocalClusterIntegrationTest {
     }
 
     @AfterClass
-    public static void tearDown() throws Exception {
+    public static void stop() throws Exception {
         dfsCluster.stop();
     }
 
@@ -105,5 +102,6 @@ public class HdfsLocalClusterIntegrationTest {
         response.close();
         assertEquals( "{\"Path\":\"/user/guest\"}", line );
 
+        Thread.sleep(60000000);
     }
 }

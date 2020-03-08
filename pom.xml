@@ -95,7 +95,6 @@
         <!-- dependency versions -->
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.10</slf4j.version>
-        <property-parser.version>0.0.2</property-parser.version>
         <jopt-simple.version>4.8</jopt-simple.version>
         <spring-core.version>4.1.5.RELEASE</spring-core.version>
 
@@ -365,12 +364,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.sakserv</groupId>
-            <artifactId>property-parser</artifactId>
-            <version>${property-parser.version}</version>
-            <scope>test</scope>
-        </dependency>
 
     </dependencies>
 
@@ -385,7 +378,7 @@
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
                     <forkCount>1</forkCount>
                     <reuseForks>false</reuseForks>
-                    <argLine>-Xms4g -Xmx4g -Dhdp.release.version=${hdp.release.version}</argLine>
+                    <argLine>-Xms2g -Xmx2g -Dhdp.release.version=${hdp.release.version} -Djava.library.path=${project.basedir}/windows_libs/${hdp.release.version}/bin</argLine>
                 </configuration>
             </plugin>
 

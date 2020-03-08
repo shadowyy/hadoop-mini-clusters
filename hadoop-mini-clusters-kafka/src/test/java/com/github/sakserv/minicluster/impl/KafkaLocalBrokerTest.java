@@ -14,9 +14,6 @@
 
 package com.github.sakserv.minicluster.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.Properties;
 
@@ -29,6 +26,8 @@ import org.slf4j.LoggerFactory;
 
 import com.github.sakserv.minicluster.config.ConfigVars;
 import com.github.sakserv.propertyparser.PropertyParser;
+
+import static org.junit.Assert.*;
 
 public class KafkaLocalBrokerTest {
 
@@ -118,7 +117,7 @@ public class KafkaLocalBrokerTest {
 
     @Test
     public void testKafkaProperties() {
-        assertTrue(kafkaLocalBroker.getKafkaProperties() instanceof java.util.Properties);
+        assertNotNull(kafkaLocalBroker.getKafkaProperties());
     }
 
     @Test
